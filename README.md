@@ -8,3 +8,8 @@ This is a repository of a script for mining, specific for controling LuxOS firmw
    * pip3 install schedule
 4. Go to the folder of the repository you put luxos-variable.py and:
    * python3 luxos-variable.py
+
+
+# Customize time slots
+
+Just search inside de code. ;)
