@@ -19,14 +19,14 @@ def detect_luxor_os(minero_ip):
         if response and "PROFILES" in response:
             return True
     except Exception as e:
-        logging.debug(f"No se pudo verificar Luxor OS en {minero_ip}: {e}")
+        logging.debug(f"No se pudo verificar LuxOS en {minero_ip}: {e}")
     return False
 
 def scan_network():
     logging.debug("Iniciando el escaneo de la red.")
     nm = nmap.PortScanner()
     mineros_con_luxor = []
-    print("Escaneando la red para detectar mineros con Luxor OS...")
+    print("Escaneando la red para detectar mineros con LuxOS...")
     for ip_end in range(start_ip, end_ip + 1):
         ip = f'{base_ip}{ip_end}'
         result = nm.scan(hosts=ip, arguments='-p 4028')  # Puerto común para APIs de minería
@@ -34,9 +34,9 @@ def scan_network():
             if detect_luxor_os(ip):
                 mineros_con_luxor.append(ip)
                 print(f"Minero con Luxor OS detectado: {ip}")
-                logging.debug(f"Minero con Luxor OS detectado: {ip}")
+                logging.debug(f"Minero con LuxOS detectado: {ip}")
             else:
-                print(f"Dispositivo detectado sin Luxor OS: {ip}")
+                print(f"Dispositivo detectado sin LuxOS: {ip}")
     logging.debug("Escaneo de la red completado.")
     return mineros_con_luxor
 
@@ -127,7 +127,7 @@ def set_downclocking(mineros, profile):
 def schedule_changes_with_selection():
     mineros = scan_network()
     if not mineros:
-        print("No se detectaron mineros con Luxor OS. Finalizando el script.")
+        print("No se detectaron mineros con LuxOS. Finalizando el script.")
         return
 
     mineros_seleccionados = select_mineros(mineros)
